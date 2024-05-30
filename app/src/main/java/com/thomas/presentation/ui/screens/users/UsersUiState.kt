@@ -17,7 +17,8 @@ internal data class UsersUiState(
     )
 
     override fun startScreenLoading() = copy(
-        loading = true
+        loading = true,
+        errorMessage = ""
     )
 
     override fun stopScreenLoading() = copy(

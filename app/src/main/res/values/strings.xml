@@ -3,4 +3,10 @@
     <string name="users_screen_title">Lista de usuários</string>
     <string name="retry">Tentar novamente</string>
     <string name="empty_users_state">Nenhum usuário encontrado.</string>
+    <string name="user_details_screen_title">Detalhes do usuário</string>
+    <string name="nickname_at">Nickname: @%s</string>
+    <string name="name_at">Nome: %s</string>
+    <string name="email_at">"Email: %s"</string>
+    <string name="repositories">Repositórios</string>
+    <string name="go_repositories_content_description">Ir para repositórios do usuário</string>
 </resources>

@@ -14,13 +14,13 @@ import java.util.concurrent.TimeoutException
 private const val UNEXPECTED_ERROR_MESSAGE = "Ocorreu um erro inesperado, tente novamente."
 private const val CONNECTION_ERROR_MESSAGE = "Verifique sua conexão e tente novamente."
 
-class NetworkException(
+internal class NetworkException(
     override val message: String = CONNECTION_ERROR_MESSAGE
 ) : Exception()
 
-fun getDefaultThrowable() = NetworkException()
+internal fun getDefaultThrowable() = NetworkException()
 
-fun HttpException.parseError(): ErrorResponse {
+internal fun HttpException.parseError(): ErrorResponse {
     return try {
         val converterErrorBody: ErrorResponse? = Gson().fromJson(
             response()?.errorBody()?.string(),
@@ -38,7 +38,7 @@ fun HttpException.parseError(): ErrorResponse {
     }
 }
 
-fun Throwable.toRequestThrowable(): Throwable {
+internal fun Throwable.toRequestThrowable(): Throwable {
     return when (this) {
         is HttpException -> parseError()
         is UnknownHostException,
@@ -51,7 +51,7 @@ fun Throwable.toRequestThrowable(): Throwable {
     }
 }
 
-fun <T> Flow<T>.parseHttpError(): Flow<T> {
+internal fun <T> Flow<T>.parseHttpError(): Flow<T> {
     return catch { throwable ->
         throw throwable.toRequestThrowable()
     }

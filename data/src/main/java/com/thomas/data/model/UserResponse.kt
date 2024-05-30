@@ -2,7 +2,7 @@ package com.thomas.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class UserResponse(
+internal data class UserResponse(
     @SerializedName("login") val login: String? = null,
     @SerializedName("id") val id: String? = null,
     @SerializedName("node_id") val nodeId: String? = null,

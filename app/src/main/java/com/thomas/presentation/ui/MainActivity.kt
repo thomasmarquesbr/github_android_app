@@ -21,6 +21,7 @@ import org.koin.core.parameter.parametersOf
 
 private const val USERS_SCREEN = "/users"
 private const val USER_DETAILS_SCREEN = "/users/{username}"
+private const val REPOSITORIES_SCREEN = "/repositories/{repository_url}"
 
 class MainActivity : ComponentActivity() {
 
@@ -53,9 +54,16 @@ class MainActivity : ComponentActivity() {
                             param?.let { username ->
                                 UserDetailsScreen(
                                     viewModel = koinViewModel<UserDetailsViewModel> {
-                                        parametersOf(username)
+                                        parametersOf(username, ::goToRepositories)
                                     }
                                 )
+                            }
+                        }
+
+                        composable(REPOSITORIES_SCREEN) { navBackStackEntry ->
+                            val param = navBackStackEntry.arguments?.getString("repository_url")
+                            param?.let { repositoryUrl ->
+
                             }
                         }
                     }
@@ -66,7 +74,17 @@ class MainActivity : ComponentActivity() {
 
     private fun goToUserDetails(username: String) {
         if (::navController.isInitialized) {
-            navController.navigate(USER_DETAILS_SCREEN.replace("{username}", username))
+            navController.navigate(USER_DETAILS_SCREEN
+                .replace("{username}", username)
+            )
+        }
+    }
+
+    private fun goToRepositories(repositoryUrl: String) {
+        if (::navController.isInitialized) {
+            navController.navigate(REPOSITORIES_SCREEN
+                .replace("{repository_url}", repositoryUrl)
+            )
         }
     }
 }

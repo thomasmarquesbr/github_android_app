@@ -13,7 +13,11 @@ val presentationModule = module {
         )
     }
 
-    viewModel { (username: String) ->
-        UserDetailsViewModel(username = username)
+    viewModel { (username: String, goToRepositories: (String)-> Unit) ->
+        UserDetailsViewModel(
+            username = username,
+            getUserDetailsUseCase = get(),
+            goToRepositories = goToRepositories
+        )
     }
 }

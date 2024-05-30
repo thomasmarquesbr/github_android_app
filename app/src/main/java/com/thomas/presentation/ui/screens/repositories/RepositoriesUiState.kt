@@ -1,10 +1,9 @@
-package com.thomas.presentation.ui.screens.userdetails
+package com.thomas.presentation.ui.screens.repositories
 
-import com.thomas.domain.model.UserDetailsModel
 import com.thomas.presentation.ui.base.UiState
 
-internal data class UserDetailsUiState(
-    val content: UserDetailsModel = UserDetailsModel.initial,
+internal data class RepositoriesUiState(
+    val content: String = "",
     val loading: Boolean = true,
     val errorMessage: String = ""
 ): UiState {
@@ -23,9 +22,5 @@ internal data class UserDetailsUiState(
 
     override fun stopScreenLoading() = copy(
         loading = false
-    )
-
-    fun updateContent(userDetails: UserDetailsModel) = copy(
-        content = userDetails
     )
 }

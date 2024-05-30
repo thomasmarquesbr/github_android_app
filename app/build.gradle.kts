@@ -78,6 +78,8 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-compose:$koinAndroidVersion")
     testImplementation("io.insert-koin:koin-test:$koinVersion")
     testImplementation("io.insert-koin:koin-test-junit4:$koinVersion")
+    // Coil
+    implementation("io.coil-kt:coil-compose:2.6.0")
 
     implementation(project(":data"))
     implementation(project(":domain"))

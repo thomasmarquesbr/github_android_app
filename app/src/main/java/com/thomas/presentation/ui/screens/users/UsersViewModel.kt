@@ -6,6 +6,7 @@ import com.thomas.domain.usecases.GetUsersUseCase
 import com.thomas.presentation.ui.base.BaseViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onCompletion
@@ -28,6 +29,9 @@ internal class UsersViewModel(
                 .flowOn(dispatcher)
                 .onStart { setState { it.startScreenLoading() } }
                 .onCompletion { setState { it.stopScreenLoading() } }
+                .catch { error ->
+                    setState { it.showError(it.errorMessage) }
+                }
                 .collect { users ->
                     setState { it.updateContent(users) }
                 }
