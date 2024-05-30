@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">github-android-app</string>
+    <string name="users_screen_title">Lista de usuários</string>
+    <string name="retry">Tentar novamente</string>
+    <string name="empty_users_state">Nenhum usuário encontrado.</string>
 </resources>

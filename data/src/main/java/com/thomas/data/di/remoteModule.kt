@@ -12,7 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-private const val GITHUB_API = "open_ticket_api"
+private const val GITHUB_API = "github_api"
 
 val remoteModule = module {
     single(named(GITHUB_API)) {
@@ -22,7 +22,7 @@ val remoteModule = module {
     single(named(GITHUB_API)) {
         provideRetrofit(
             okHttpClient = get(named(GITHUB_API)) as OkHttpClient,
-            baseUrl = ""
+            baseUrl = "https://api.github.com"
         )
     }
 
