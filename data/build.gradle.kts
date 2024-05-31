@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    kotlin("plugin.serialization") version "1.9.0"
 }
 
 android {
@@ -53,12 +54,12 @@ dependencies {
     val retrofitVersion = "2.9.0"
     val koinVersion = "3.2.2"
     val koinAndroidVersion = "3.2.2"
-    val mockkVersion = "1.13.11"
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
     // Gson
@@ -71,7 +72,20 @@ dependencies {
     // Compose navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
     // Mockk
-    testImplementation("io.mockk:mockk:${mockkVersion}")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
+    testImplementation("org.assertj:assertj-core:3.20.2")
+    testImplementation("androidx.test:core:1.4.0")
+    testImplementation("app.cash.turbine:turbine:0.5.2")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+
+//    testImplementation("androidx.test.ext:junit:1.1.3")
+//    testImplementation("androidx.test.espresso:espresso-core:3.5.1")
+//    testImplementation("com.squareup.moshi:moshi:2.0.0")
+//    testImplementation("com.squareup.okhttp3:okhttp:4.9.3")
+//    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
+
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
     implementation(project(":domain"))
 }
