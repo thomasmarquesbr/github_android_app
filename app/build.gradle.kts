@@ -89,6 +89,9 @@ dependencies {
     testImplementation("io.mockk:mockk-android:1.13.5")
     testImplementation("app.cash.turbine:turbine:1.0.0")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("org.robolectric:robolectric:4.9.2")
+    testImplementation("androidx.test:core:1.4.0")
+
 
     implementation(project(":data"))
     implementation(project(":domain"))

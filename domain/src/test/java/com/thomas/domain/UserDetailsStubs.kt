@@ -11,6 +11,6 @@ internal object UserDetailsStubs {
         location = "location",
         followers = 10,
         following = 10,
-        repoUrl = "https://repo.url"
+        reposUrl = "https://repo.url"
     )
 }

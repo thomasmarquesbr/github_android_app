@@ -4,6 +4,7 @@ import app.cash.turbine.test
 import com.thomas.domain.GithubRepository
 import com.thomas.domain.UserDetailsStubs
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.flow.flow
@@ -27,6 +28,7 @@ internal class GetUserDetailsUseCaseTest {
         val result = GetUserDetailsUseCase(repository).invoke(username)
 
         // Then
+        coVerify { repository.getUserDetails(username) }
         result.test {
             assertEquals(expectItem(), expectItem)
             expectComplete()
@@ -44,6 +46,7 @@ internal class GetUserDetailsUseCaseTest {
         val result = GetUserDetailsUseCase(repository).invoke(username)
 
         // Then
+        coVerify { repository.getUserDetails(username) }
         result.test {
             assertEquals(expectError(), error)
         }

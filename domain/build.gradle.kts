@@ -11,12 +11,11 @@ java {
 dependencies {
     testImplementation("org.testng:testng:6.9.6")
     val koinVersion = "3.2.2"
-    val mockkVersion = "1.13.11"
     // Koin
     implementation("io.insert-koin:koin-core:$koinVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     // Mockk
-    testImplementation("io.mockk:mockk:${mockkVersion}")
+    testImplementation("io.mockk:mockk:1.13.11")
 
     testImplementation("org.assertj:assertj-core:3.20.2")
     testImplementation("androidx.test:core:1.4.0")

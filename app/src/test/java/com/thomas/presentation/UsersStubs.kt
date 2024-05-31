@@ -2,10 +2,10 @@ package com.thomas.presentation
 
 import com.thomas.domain.model.UserModel
 
-object UserStubs {
-    val user = UserModel(
-        nickname = "nickname",
-        avatarUrl = "https://avatar.url"
+object UsersStubs {
+    val model = UserModel(
+        nickname = "nickname1",
+        avatarUrl = "https://avatar1.url"
     )
 
     val listUsers = listOf(

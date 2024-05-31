@@ -8,7 +8,7 @@ data class UserDetailsModel(
     val location: String,
     val followers: Int,
     val following: Int,
-    val repoUrl: String
+    val reposUrl: String
 ) {
     companion object {
         val initial = UserDetailsModel(
@@ -19,7 +19,7 @@ data class UserDetailsModel(
             location = "",
             followers = 0,
             following = 0,
-            repoUrl = ""
+            reposUrl = ""
         )
     }
 }

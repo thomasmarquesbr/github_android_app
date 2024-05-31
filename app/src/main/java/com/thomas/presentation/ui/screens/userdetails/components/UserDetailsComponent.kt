@@ -123,7 +123,7 @@ internal fun UserDetailsComponent(
             }
         }
     }
-    if (userDetails.repoUrl.isNotBlank()) {
+    if (userDetails.reposUrl.isNotBlank()) {
         RepositoriesItemComponent(onRepositoryClick = onRepositoryClick)
     }
 }

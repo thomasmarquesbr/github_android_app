@@ -3,7 +3,7 @@ package com.thomas.presentation
 import com.thomas.domain.model.UserDetailsModel
 
 object UserDetailsStubs {
-    val userDetails = UserDetailsModel(
+    val model = UserDetailsModel(
         nickname = "nickname",
         name = "name",
         company = "company",
@@ -11,6 +11,6 @@ object UserDetailsStubs {
         location = "location",
         followers = 10,
         following = 10,
-        repoUrl = "https://repo.url"
+        reposUrl = "https://repo.url"
     )
 }

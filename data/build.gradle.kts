@@ -72,6 +72,7 @@ dependencies {
     // Compose navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
     // Mockk
+    testImplementation("io.mockk:mockk:1.13.11")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
     testImplementation("org.assertj:assertj-core:3.20.2")
     testImplementation("androidx.test:core:1.4.0")

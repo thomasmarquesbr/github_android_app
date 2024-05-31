@@ -11,5 +11,5 @@ internal fun UserDetailResponse.toDomain() = UserDetailsModel(
     location = this.location.orEmpty(),
     followers = this.followers ?: 0,
     following = this.following ?: 0,
-    repoUrl = this.reposUrl.orEmpty()
+    reposUrl = this.reposUrl.orEmpty()
 )

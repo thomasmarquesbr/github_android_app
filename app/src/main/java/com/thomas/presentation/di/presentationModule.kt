@@ -23,9 +23,9 @@ val presentationModule = module {
         )
     }
 
-    viewModel { (repositoryUrl: String, goBackClick: () -> Unit) ->
+    viewModel { (username: String, goBackClick: () -> Unit) ->
         RepositoriesViewModel(
-            repositoryUrl = repositoryUrl,
+            username = username,
             getRepositoriesUseCase = get(),
             goBackClick = goBackClick
         )
