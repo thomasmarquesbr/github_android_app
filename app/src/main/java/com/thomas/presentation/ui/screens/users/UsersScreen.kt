@@ -7,22 +7,18 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ripple.rememberRipple
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,8 +43,7 @@ import com.thomas.myapplication.R
 import com.thomas.presentation.ui.components.LoadingStateComponent
 import com.thomas.presentation.ui.components.MessageStateComponent
 import com.thomas.presentation.ui.components.ScreenTitleComponent
-import com.thomas.presentation.ui.theme.baseGray400
-import java.util.EmptyStackException
+import com.thomas.presentation.ui.components.SearchTextField
 
 @Composable
 internal fun UsersScreen(
@@ -75,7 +70,7 @@ internal fun UsersScreen(
                 )
             }
 
-            uiState.content.isEmpty() -> {
+            uiState.filteredContent.isEmpty() && uiState.searchText.isEmpty() -> {
                 MessageStateComponent(
                     message = stringResource(R.string.empty_users_state),
                     onButtonClick = viewModel::getUsers
@@ -84,7 +79,9 @@ internal fun UsersScreen(
 
             else -> {
                 UsersListComponent(
-                    users = uiState.content,
+                    users = uiState.filteredContent,
+                    searchText = uiState.searchText,
+                    onSearchValue = viewModel::onSearchValue,
                     onItemClick = viewModel::onUserItemClicked
                 )
             }
@@ -93,13 +90,25 @@ internal fun UsersScreen(
 }
 
 @Composable
-internal fun UsersListComponent(users: List<UserModel>, onItemClick: (UserModel) -> Unit) {
+internal fun UsersListComponent(
+    searchText: String,
+    users: List<UserModel>,
+    onSearchValue: (String) -> Unit,
+    onItemClick: (UserModel) -> Unit
+) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize(),
         contentPadding = PaddingValues(top = 8.dp, start = 16.dp, end = 16.dp, bottom = 16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
+        item {
+            SearchTextField(
+                text = searchText,
+                onValueChanged = onSearchValue,
+                placeHolder = stringResource(R.string.search_user_placeholder)
+            )
+        }
         items(users) { user ->
             UserItemComponent(
                 user = user,
@@ -115,7 +124,11 @@ internal fun UserItemComponent(user: UserModel, onItemClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .shadow(elevation = 2.dp, shape = shapeCard, spotColor = baseGray400)
+            .shadow(
+                elevation = 2.dp,
+                shape = shapeCard,
+                spotColor = MaterialTheme.colorScheme.secondary
+            )
             .clip(shapeCard)
             .clickable(
                 enabled = true,
@@ -124,7 +137,7 @@ internal fun UserItemComponent(user: UserModel, onItemClick: () -> Unit) {
                 onClick = onItemClick
             ),
         colors = CardDefaults.cardColors(
-            containerColor = Color.White,
+            containerColor = MaterialTheme.colorScheme.background,
         ),
         shape = shapeCard,
     ) {

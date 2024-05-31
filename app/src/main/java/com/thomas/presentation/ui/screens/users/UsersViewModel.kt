@@ -18,7 +18,6 @@ internal class UsersViewModel(
     private val goToUserDetails: (String) -> Unit,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ): BaseViewModel<UsersUiState>(UsersUiState()) {
-
     init {
         getUsers()
     }
@@ -40,5 +39,9 @@ internal class UsersViewModel(
 
     fun onUserItemClicked(user: UserModel) {
         goToUserDetails.invoke(user.nickname)
+    }
+
+    fun onSearchValue(text: String) {
+        setState { it.updateSearchValue(text) }
     }
 }

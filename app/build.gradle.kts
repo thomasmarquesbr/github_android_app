@@ -80,6 +80,8 @@ dependencies {
     testImplementation("io.insert-koin:koin-test-junit4:$koinVersion")
     // Coil
     implementation("io.coil-kt:coil-compose:2.6.0")
+    // SystemUiController
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.23.1")
 
     implementation(project(":data"))
     implementation(project(":domain"))

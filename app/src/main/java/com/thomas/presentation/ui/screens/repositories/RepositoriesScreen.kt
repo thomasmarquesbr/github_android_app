@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -34,7 +33,6 @@ import com.thomas.myapplication.R
 import com.thomas.presentation.ui.components.LoadingStateComponent
 import com.thomas.presentation.ui.components.MessageStateComponent
 import com.thomas.presentation.ui.components.ScreenTitleComponent
-import com.thomas.presentation.ui.theme.baseGray400
 import com.thomas.presentation.ui.theme.yellow700
 
 @Composable
@@ -112,19 +110,19 @@ private fun RepositoryItemComponent(repository: RepositoryModel) {
                 Text(
                     text = repository.starsAmount.toString(),
                     fontSize = 14.sp,
-                    color = baseGray400
+                    color = MaterialTheme.colorScheme.secondary
                 )
                 Spacer(modifier = Modifier.size(12.dp))
                 Icon(
                     painter = painterResource(R.drawable.ic_eye_outline),
                     contentDescription = stringResource(R.string.watchers_content_description),
-                    tint = baseGray400
+                    tint = MaterialTheme.colorScheme.secondary
                 )
                 Spacer(modifier = Modifier.size(4.dp))
                 Text(
                     text = repository.watchersAmount.toString(),
                     fontSize = 14.sp,
-                    color = baseGray400
+                    color = MaterialTheme.colorScheme.secondary
                 )
             }
         }

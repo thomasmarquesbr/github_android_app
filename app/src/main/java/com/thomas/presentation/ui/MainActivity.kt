@@ -21,9 +21,9 @@ import com.thomas.presentation.ui.theme.GitHubAppTheme
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
-private const val USERS_SCREEN = "/users"
-private const val USER_DETAILS_SCREEN = "/users/{username}"
-private const val REPOSITORIES_SCREEN = "/users/{username}/repos"
+private const val USERS_SCREEN = "users"
+private const val USER_DETAILS_SCREEN = "users/{username}"
+private const val REPOSITORIES_SCREEN = "users/{username}/repos"
 
 class MainActivity : ComponentActivity() {
 
@@ -32,7 +32,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             GitHubAppTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background

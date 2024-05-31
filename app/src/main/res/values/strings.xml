@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">github-android-app</string>
+    <string name="app_name">GitHub App</string>
     <string name="users_screen_title">User list</string>
     <string name="retry">Try again</string>
     <string name="empty_users_state">No users found.</string>
@@ -19,4 +19,5 @@
     <string name="followers_at">Followers: %d</string>
     <string name="following_at">Following: %d</string>
     <string name="back_icon_content_description">Botão voltar</string>
+    <string name="search_user_placeholder">Search by nickname</string>
 </resources>

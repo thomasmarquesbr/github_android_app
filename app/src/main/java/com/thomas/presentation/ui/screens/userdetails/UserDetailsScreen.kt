@@ -43,7 +43,6 @@ import com.thomas.myapplication.R
 import com.thomas.presentation.ui.components.LoadingStateComponent
 import com.thomas.presentation.ui.components.MessageStateComponent
 import com.thomas.presentation.ui.components.ScreenTitleComponent
-import com.thomas.presentation.ui.theme.baseGray400
 
 @Composable
 internal fun UserDetailsScreen(
@@ -92,10 +91,14 @@ private fun UserDetailsComponent(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .shadow(elevation = 2.dp, shape = shapeCard, spotColor = baseGray400)
+            .shadow(
+                elevation = 2.dp,
+                shape = shapeCard,
+                spotColor = MaterialTheme.colorScheme.secondary
+            )
             .clip(shapeCard),
         colors = CardDefaults.cardColors(
-            containerColor = Color.White,
+            containerColor = MaterialTheme.colorScheme.background,
         ),
         shape = shapeCard,
     ) {
@@ -186,7 +189,11 @@ private fun RepositoriesItemComponent(onRepositoryClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 12.dp)
-            .shadow(elevation = 2.dp, shape = shapeCard, spotColor = baseGray400)
+            .shadow(
+                elevation = 2.dp,
+                shape = shapeCard,
+                spotColor = MaterialTheme.colorScheme.secondary
+            )
             .clip(shapeCard)
             .clickable(
                 enabled = true,
@@ -197,7 +204,7 @@ private fun RepositoriesItemComponent(onRepositoryClick: () -> Unit) {
                 }
             ),
         colors = CardDefaults.cardColors(
-            containerColor = Color.White,
+            containerColor = MaterialTheme.colorScheme.background,
         ),
         shape = shapeCard,
     ) {
@@ -211,7 +218,7 @@ private fun RepositoriesItemComponent(onRepositoryClick: () -> Unit) {
             Icon(
                 painter = painterResource(R.drawable.ic_chevron_right),
                 contentDescription = stringResource(R.string.go_repositories_content_description),
-                tint = baseGray400
+                tint = MaterialTheme.colorScheme.secondary
             )
         }
     }
