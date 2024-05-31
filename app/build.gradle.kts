@@ -69,7 +69,7 @@ dependencies {
 
     val koinVersion = "3.2.2"
     val koinAndroidVersion = "3.2.2"
-
+    val mockkVersion = "1.13.11"
     // Koin
     implementation("io.insert-koin:koin-core:$koinVersion")
     implementation("io.insert-koin:koin-android:$koinAndroidVersion")
@@ -82,6 +82,8 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.6.0")
     // SystemUiController
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.23.1")
+    // Mockk
+    testImplementation("io.mockk:mockk:${mockkVersion}")
 
     implementation(project(":data"))
     implementation(project(":domain"))

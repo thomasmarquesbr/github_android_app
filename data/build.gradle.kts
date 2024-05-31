@@ -53,6 +53,7 @@ dependencies {
     val retrofitVersion = "2.9.0"
     val koinVersion = "3.2.2"
     val koinAndroidVersion = "3.2.2"
+    val mockkVersion = "1.13.11"
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
@@ -69,5 +70,8 @@ dependencies {
     testImplementation("io.insert-koin:koin-test-junit4:$koinVersion")
     // Compose navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
+    // Mockk
+    testImplementation("io.mockk:mockk:${mockkVersion}")
+
     implementation(project(":domain"))
 }
