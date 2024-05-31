@@ -1,9 +1,10 @@
 package com.thomas.presentation.ui.screens.repositories
 
+import com.thomas.domain.model.RepositoryModel
 import com.thomas.presentation.ui.base.UiState
 
 internal data class RepositoriesUiState(
-    val content: String = "",
+    val content: List<RepositoryModel> = listOf(),
     val loading: Boolean = true,
     val errorMessage: String = ""
 ): UiState {
@@ -22,5 +23,9 @@ internal data class RepositoriesUiState(
 
     override fun stopScreenLoading() = copy(
         loading = false
+    )
+
+    fun updateContent(repositories: List<RepositoryModel>) = copy(
+        content = repositories
     )
 }

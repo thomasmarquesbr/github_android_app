@@ -1,11 +1,11 @@
 package com.thomas.data.di
 
 import com.google.gson.GsonBuilder
+import com.thomas.data.BuildConfig
 import com.thomas.data.repository.GithubAPIDataSource
 import com.thomas.data.repository.GithubServiceAPI
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.android.BuildConfig
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -22,7 +22,7 @@ val remoteModule = module {
     single(named(GITHUB_API)) {
         provideRetrofit(
             okHttpClient = get(named(GITHUB_API)) as OkHttpClient,
-            baseUrl = "https://api.github.com"
+            baseUrl = BuildConfig.BASE_URL
         )
     }
 

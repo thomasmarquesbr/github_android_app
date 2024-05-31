@@ -1,5 +1,6 @@
 package com.thomas.presentation.di
 
+import com.thomas.presentation.ui.screens.repositories.RepositoriesViewModel
 import com.thomas.presentation.ui.screens.userdetails.UserDetailsViewModel
 import com.thomas.presentation.ui.screens.users.UsersViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -13,11 +14,20 @@ val presentationModule = module {
         )
     }
 
-    viewModel { (username: String, goToRepositories: (String)-> Unit) ->
+    viewModel { (username: String, goToRepositories: (String)-> Unit, goBackClick: () -> Unit) ->
         UserDetailsViewModel(
             username = username,
             getUserDetailsUseCase = get(),
-            goToRepositories = goToRepositories
+            goToRepositories = goToRepositories,
+            goBackClick = goBackClick
+        )
+    }
+
+    viewModel { (repositoryUrl: String, goBackClick: () -> Unit) ->
+        RepositoriesViewModel(
+            repositoryUrl = repositoryUrl,
+            getRepositoriesUseCase = get(),
+            goBackClick = goBackClick
         )
     }
 }

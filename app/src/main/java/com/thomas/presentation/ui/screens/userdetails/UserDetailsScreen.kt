@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -32,6 +33,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
@@ -55,7 +57,10 @@ internal fun UserDetailsScreen(
             .background(MaterialTheme.colorScheme.background),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        ScreenTitleComponent(text = R.string.user_details_screen_title)
+        ScreenTitleComponent(
+            text = R.string.user_details_screen_title,
+            onBackClick = viewModel::onBackClick
+        )
         when {
             uiState.loading -> {
                 LoadingStateComponent()
@@ -81,13 +86,12 @@ internal fun UserDetailsScreen(
 @Composable
 private fun UserDetailsComponent(
     userDetails: UserDetailsModel,
-    onRepositoryClick: (String) -> Unit
+    onRepositoryClick: () -> Unit
 ) {
-    val shapeCard = RoundedCornerShape(6.dp)
+    val shapeCard = RoundedCornerShape(0.dp)
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp)
             .shadow(elevation = 2.dp, shape = shapeCard, spotColor = baseGray400)
             .clip(shapeCard),
         colors = CardDefaults.cardColors(
@@ -95,48 +99,93 @@ private fun UserDetailsComponent(
         ),
         shape = shapeCard,
     ) {
-        Row(modifier = Modifier.padding(16.dp)) {
-            if (userDetails.avatarUrl.isNotBlank()) {
-                SubcomposeAsyncImage(
+        Column {
+            Row(modifier = Modifier.padding(16.dp)) {
+                if (userDetails.avatarUrl.isNotBlank()) {
+                    SubcomposeAsyncImage(
+                        modifier = Modifier
+                            .size(80.dp)
+                            .clip(CircleShape),
+                        model = ImageRequest
+                            .Builder(LocalContext.current)
+                            .data(userDetails.avatarUrl)
+                            .crossfade(true).build(),
+                        contentScale = ContentScale.FillBounds,
+                        contentDescription = null,
+                        loading = {
+                            CircularProgressIndicator(Modifier.size(40.dp))
+                        }
+                    )
+                }
+                Column(
                     modifier = Modifier
-                        .size(80.dp)
-                        .clip(CircleShape),
-                    model = ImageRequest
-                        .Builder(LocalContext.current)
-                        .data(userDetails.avatarUrl)
-                        .crossfade(true).build(),
-                    contentScale = ContentScale.FillBounds,
-                    contentDescription = null,
-                    loading = {
-                        CircularProgressIndicator(Modifier.size(40.dp))
+                        .height(80.dp)
+                        .padding(start = 16.dp),
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    if (userDetails.nickname.isNotBlank()) {
+                        Text(
+                            text = stringResource(R.string.nickname_at, userDetails.nickname),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
                     }
+                    if (userDetails.name.isNotBlank()) {
+                        Text(
+                            text = stringResource(R.string.name_at, userDetails.name),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                    if (userDetails.company.isNotBlank()) {
+                        Text(
+                            text = stringResource(R.string.company_at, userDetails.company),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                }
+            }
+            if (userDetails.location.isNotBlank()) {
+                Text(
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp),
+                    text = userDetails.location,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
-            Column(modifier = Modifier.padding(start = 16.dp)) {
-                if (userDetails.nickname.isNotBlank()) {
-                    Text(text = stringResource(R.string.nickname_at, userDetails.nickname))
-                }
-                if (userDetails.name.isNotBlank()) {
-                    Text(text = stringResource(R.string.name_at, userDetails.name))
-                }
-                if (userDetails.email.isNotBlank()) {
-                    Text(text = stringResource(R.string.email_at, userDetails.email))
-                }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Text(
+                    text = stringResource(R.string.followers_at, userDetails.followers),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    text = stringResource(R.string.following_at, userDetails.following),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
             }
         }
     }
     if (userDetails.repoUrl.isNotBlank()) {
-        RepositoriesItemComponent(userDetails.repoUrl, onRepositoryClick = onRepositoryClick)
+        RepositoriesItemComponent(onRepositoryClick = onRepositoryClick)
     }
 }
 
 @Composable
-private fun RepositoriesItemComponent(repoUrl: String, onRepositoryClick: (String) -> Unit) {
-    val shapeCard = RoundedCornerShape(6.dp)
+private fun RepositoriesItemComponent(onRepositoryClick: () -> Unit) {
+    val shapeCard = RoundedCornerShape(0.dp)
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 12.dp)
+            .padding(vertical = 12.dp)
             .shadow(elevation = 2.dp, shape = shapeCard, spotColor = baseGray400)
             .clip(shapeCard)
             .clickable(
@@ -144,7 +193,7 @@ private fun RepositoriesItemComponent(repoUrl: String, onRepositoryClick: (Strin
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(bounded = true),
                 onClick = {
-                    onRepositoryClick.invoke(repoUrl)
+                    onRepositoryClick.invoke()
                 }
             ),
         colors = CardDefaults.cardColors(

@@ -16,6 +16,7 @@ internal class UserDetailsViewModel(
     private val username: String,
     private val getUserDetailsUseCase: GetUserDetailsUseCase,
     private val goToRepositories: (String) -> Unit,
+    private val goBackClick: () -> Unit,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ): BaseViewModel<UserDetailsUiState>(UserDetailsUiState()) {
     init {
@@ -29,7 +30,7 @@ internal class UserDetailsViewModel(
                 .onStart { setState { it.startScreenLoading() } }
                 .onCompletion { setState { it.stopScreenLoading() } }
                 .catch { error ->
-                    setState { it.showError(it.errorMessage) }
+                    setState { it.showError(error.message.orEmpty()) }
                 }
                 .collect { userDetails ->
                     setState { it.updateContent(userDetails) }
@@ -37,7 +38,11 @@ internal class UserDetailsViewModel(
         }
     }
 
-    fun onRepositoryClick(repositoryUrl: String) {
-        goToRepositories.invoke(repositoryUrl)
+    fun onRepositoryClick() {
+        goToRepositories.invoke(username)
+    }
+
+    fun onBackClick() {
+        goBackClick.invoke()
     }
 }

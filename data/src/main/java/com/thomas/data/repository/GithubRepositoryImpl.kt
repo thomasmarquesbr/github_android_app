@@ -2,6 +2,7 @@ package com.thomas.data.repository
 
 import com.thomas.data.mappers.toDomain
 import com.thomas.domain.GithubRepository
+import com.thomas.domain.model.RepositoryModel
 import com.thomas.domain.model.UserDetailsModel
 import com.thomas.domain.model.UserModel
 import kotlinx.coroutines.flow.Flow
@@ -17,6 +18,11 @@ internal class GithubRepositoryImpl(
 
     override suspend fun getUserDetails(username: String): Flow<UserDetailsModel> {
         return apiDataSource.getUserDetails(username)
+            .map { it.toDomain() }
+    }
+
+    override suspend fun getRepositories(username: String): Flow<List<RepositoryModel>> {
+        return apiDataSource.getRepositories(username)
             .map { it.toDomain() }
     }
 }
