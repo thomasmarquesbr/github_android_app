@@ -11,7 +11,7 @@ internal interface GithubServiceAPI {
     suspend fun getUsers(): List<UserResponse>
 
     @GET("/users/{username}")
-    suspend fun getUserDetail(
+    suspend fun getUserDetails(
         @Path("username") username: String
     ): UserDetailResponse
 

@@ -79,6 +79,8 @@ dependencies {
     testImplementation("app.cash.turbine:turbine:0.5.2")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
 
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2")
+
 //    testImplementation("androidx.test.ext:junit:1.1.3")
 //    testImplementation("androidx.test.espresso:espresso-core:3.5.1")
 //    testImplementation("com.squareup.moshi:moshi:2.0.0")
