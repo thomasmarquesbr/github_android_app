@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">GitHub App</string>
+    <string name="users_screen_title">User list</string>
+    <string name="retry">Try again</string>
+    <string name="empty_users_state">No users found.</string>
+    <string name="user_details_screen_title">User details</string>
+    <string name="nickname_at">Nickname: @%s</string>
+    <string name="name_at">Name: %s</string>
+    <string name="company_at">"Company: %s"</string>
+    <string name="repositories">Repositories</string>
+    <string name="go_repositories_content_description">Go to user repositories</string>
+    <string name="repositories_screen_title">List of repositories</string>
+    <string name="empty_repositories_state">No repositories found.</string>
+    <string name="go_site">Go site</string>
+    <string name="watchers_content_description">Amount of watchers</string>
+    <string name="stars_content_description">Amount of starts</string>
+    <string name="language_at">Language: %s</string>
+    <string name="license_at">License: %s</string>
+    <string name="followers_at">Followers: %d</string>
+    <string name="following_at">Following: %d</string>
+    <string name="back_icon_content_description">Botão voltar</string>
+    <string name="search_user_placeholder">Search by nickname</string>
+</resources>
