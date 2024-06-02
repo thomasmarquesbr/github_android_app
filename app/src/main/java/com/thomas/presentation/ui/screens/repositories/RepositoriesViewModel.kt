@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 internal class RepositoriesViewModel(
-    private val repositoryUrl: String,
+    private val username: String,
     private val getRepositoriesUseCase: GetRepositoriesUseCase,
     private val goBackClick: () -> Unit,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
@@ -23,7 +23,7 @@ internal class RepositoriesViewModel(
 
     fun getRepositories() {
         viewModelScope.launch {
-            getRepositoriesUseCase.invoke(repositoryUrl)
+            getRepositoriesUseCase.invoke(username)
                 .flowOn(dispatcher)
                 .onStart { setState { it.startScreenLoading() } }
                 .onCompletion { setState { it.stopScreenLoading() } }

@@ -15,6 +15,7 @@ internal data class UserDetailResponse(
     @SerializedName("gists_url") val gistsUrl: String? = null,
     @SerializedName("starred_url") val starredUrl: String? = null,
     @SerializedName("subscriptions_url") val subscriptionsUrl: String? = null,
+    @SerializedName("organizations_url") val organizationsUrl: String? = null,
     @SerializedName("repos_url") val reposUrl: String? = null,
     @SerializedName("events_url") val eventsUrl: String? = null,
     @SerializedName("received_events_url") val receivedEventsUrl: String? = null,

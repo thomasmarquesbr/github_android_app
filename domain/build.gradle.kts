@@ -9,11 +9,10 @@ java {
 }
 
 dependencies {
-    val koinVersion = "3.2.2"
-    val mockkVersion = "1.13.11"
-    // Koin
-    implementation("io.insert-koin:koin-core:$koinVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    // Mockk
-    testImplementation("io.mockk:mockk:${mockkVersion}")
+    implementation(libs.koin)
+    implementation(libs.coroutines)
+    testImplementation(libs.test.mockk)
+    testImplementation(libs.test.core)
+    testImplementation(libs.test.turbine)
+    testImplementation(libs.test.archCore)
 }

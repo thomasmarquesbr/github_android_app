@@ -17,7 +17,7 @@ internal class GithubAPIDataSource(
 
     fun getUserDetails(username: String): Flow<UserDetailResponse> =
         flow {
-            emit(service.getUserDetail(username))
+            emit(service.getUserDetails(username))
         }.parseHttpError()
 
     fun getRepositories(username: String): Flow<List<RepositoryResponse>> =

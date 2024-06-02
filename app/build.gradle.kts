@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace = "com.thomas.myapplication"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "com.thomas.myapplication"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.compileSdk.get().toInt()
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.versionName.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -45,46 +45,20 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            resources.excludes.add("META-INF/*")
         }
     }
 }
 
 dependencies {
-
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.1")
-    implementation("androidx.activity:activity-compose:1.9.0")
-    implementation(platform("androidx.compose:compose-bom:2023.08.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3-android:1.2.1")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-
-    val koinVersion = "3.2.2"
-    val koinAndroidVersion = "3.2.2"
-    val mockkVersion = "1.13.11"
-    // Koin
-    implementation("io.insert-koin:koin-core:$koinVersion")
-    implementation("io.insert-koin:koin-android:$koinAndroidVersion")
-    implementation("io.insert-koin:koin-android-compat:$koinAndroidVersion")
-    implementation("io.insert-koin:koin-androidx-navigation:$koinAndroidVersion")
-    implementation("io.insert-koin:koin-androidx-compose:$koinAndroidVersion")
-    testImplementation("io.insert-koin:koin-test:$koinVersion")
-    testImplementation("io.insert-koin:koin-test-junit4:$koinVersion")
-    // Coil
-    implementation("io.coil-kt:coil-compose:2.6.0")
-    // SystemUiController
-    implementation("com.google.accompanist:accompanist-systemuicontroller:0.23.1")
-    // Mockk
-    testImplementation("io.mockk:mockk:${mockkVersion}")
-
+    implementation(libs.coreKtx)
+    implementation(libs.composeMaterial3)
+    implementation(libs.coil)
+    implementation(libs.koinCompose)
+    implementation(libs.systemuicontroller)
+    testImplementation(libs.test.koinJunit)
+    testImplementation(libs.test.coroutines)
+    testImplementation(libs.test.mockk)
     implementation(project(":data"))
     implementation(project(":domain"))
 }
