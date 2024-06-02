@@ -6,11 +6,13 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
 import androidx.navigation.NavBackStackEntry
 
+private const val ANIMATION_DURATION = 500
+
 val slideIntoContainerLeft: AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition? =
     {
         slideIntoContainer(
             towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
-            animationSpec = tween(500)
+            animationSpec = tween(ANIMATION_DURATION)
         )
     }
 
@@ -18,7 +20,7 @@ val slideIntoContainerRight: AnimatedContentTransitionScope<NavBackStackEntry>.(
     {
         slideIntoContainer(
             towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
-            animationSpec = tween(500)
+            animationSpec = tween(ANIMATION_DURATION)
         )
     }
 
@@ -26,7 +28,7 @@ val slideOutOfContainerLeft: AnimatedContentTransitionScope<NavBackStackEntry>.(
     {
         slideOutOfContainer(
             towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
-            animationSpec = tween(500)
+            animationSpec = tween(ANIMATION_DURATION)
         )
     }
 
@@ -34,6 +36,6 @@ val slideOutOfContainerRight: AnimatedContentTransitionScope<NavBackStackEntry>.
     {
         slideOutOfContainer(
             towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
-            animationSpec = tween(500)
+            animationSpec = tween(ANIMATION_DURATION)
         )
     }

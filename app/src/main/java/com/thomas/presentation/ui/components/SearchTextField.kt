@@ -24,6 +24,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.thomas.myapplication.R
+import com.thomas.presentation.ui.theme.dimen
 
 private val AppTextInputColors: TextFieldColors
     @Composable
@@ -73,13 +74,13 @@ fun SearchTextField(
                 tint = if (isFocused) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
             )
         },
-        shape = RoundedCornerShape(6.dp),
+        shape = RoundedCornerShape(MaterialTheme.dimen.small),
         colors = AppTextInputColors,
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Go
         ),
-        placeholder = { Text(text = placeHolder) },
+        placeholder = { Text(text = placeHolder, style = MaterialTheme.typography.labelMedium) },
         keyboardActions = KeyboardActions(
             onGo = { onGoFocus.invoke() }
         ),

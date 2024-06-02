@@ -14,18 +14,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.thomas.myapplication.R
+import com.thomas.presentation.ui.theme.dimen
 
 @Composable
 internal fun ScreenTitleComponent(@StringRes text: Int, onBackClick: (() -> Unit)? = null) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp)
-            .padding(top = 16.dp)
+            .padding(horizontal = MaterialTheme.dimen.small)
+            .padding(top = MaterialTheme.dimen.normal)
     ) {
         onBackClick?.let {
             IconButton(
@@ -34,7 +32,7 @@ internal fun ScreenTitleComponent(@StringRes text: Int, onBackClick: (() -> Unit
                 onClick = onBackClick
             ) {
                 Icon(
-                    modifier = Modifier.size(28.dp),
+                    modifier = Modifier.size(MaterialTheme.dimen.iconMedium),
                     painter = painterResource(R.drawable.ic_arrow_left),
                     contentDescription = stringResource(R.string.back_icon_content_description),
                     tint = MaterialTheme.colorScheme.primary
@@ -44,10 +42,9 @@ internal fun ScreenTitleComponent(@StringRes text: Int, onBackClick: (() -> Unit
         Text(
             modifier = Modifier
                 .align(Alignment.Center)
-                .padding(16.dp),
+                .padding(MaterialTheme.dimen.normal),
             text = stringResource(text),
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.primary
         )
     }

@@ -27,18 +27,19 @@ import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.thomas.domain.model.UserDetailsModel
 import com.thomas.myapplication.R
+import com.thomas.presentation.ui.theme.dimen
 
 @Composable
 internal fun UserDetailsComponent(
     userDetails: UserDetailsModel,
     onRepositoryClick: () -> Unit
 ) {
-    val shapeCard = RoundedCornerShape(0.dp)
+    val shapeCard = RoundedCornerShape(MaterialTheme.dimen.default)
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .shadow(
-                elevation = 2.dp,
+                elevation = MaterialTheme.dimen.elevationSmall,
                 shape = shapeCard,
                 spotColor = MaterialTheme.colorScheme.secondary
             )
@@ -49,11 +50,11 @@ internal fun UserDetailsComponent(
         shape = shapeCard,
     ) {
         Column {
-            Row(modifier = Modifier.padding(16.dp)) {
+            Row(modifier = Modifier.padding(MaterialTheme.dimen.normal)) {
                 if (userDetails.avatarUrl.isNotBlank()) {
                     SubcomposeAsyncImage(
                         modifier = Modifier
-                            .size(80.dp)
+                            .size(MaterialTheme.dimen.iconExtraLarge)
                             .clip(CircleShape),
                         model = ImageRequest
                             .Builder(LocalContext.current)
@@ -62,26 +63,28 @@ internal fun UserDetailsComponent(
                         contentScale = ContentScale.FillBounds,
                         contentDescription = null,
                         loading = {
-                            CircularProgressIndicator(Modifier.size(40.dp))
+                            CircularProgressIndicator(Modifier.size(MaterialTheme.dimen.iconLarge))
                         }
                     )
                 }
                 Column(
                     modifier = Modifier
-                        .height(80.dp)
-                        .padding(start = 16.dp),
+                        .height(MaterialTheme.dimen.iconExtraLarge)
+                        .padding(start = MaterialTheme.dimen.normal),
                     verticalArrangement = Arrangement.Center
                 ) {
                     if (userDetails.nickname.isNotBlank()) {
                         Text(
                             text = stringResource(R.string.nickname_at, userDetails.nickname),
                             maxLines = 1,
+                            style = MaterialTheme.typography.titleSmall,
                             overflow = TextOverflow.Ellipsis
                         )
                     }
                     if (userDetails.name.isNotBlank()) {
                         Text(
                             text = stringResource(R.string.name_at, userDetails.name),
+                            style = MaterialTheme.typography.bodyMedium,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -89,6 +92,7 @@ internal fun UserDetailsComponent(
                     if (userDetails.company.isNotBlank()) {
                         Text(
                             text = stringResource(R.string.company_at, userDetails.company),
+                            style = MaterialTheme.typography.labelMedium,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -98,8 +102,9 @@ internal fun UserDetailsComponent(
             if (userDetails.location.isNotBlank()) {
                 Text(
                     modifier = Modifier
-                        .padding(horizontal = 16.dp),
+                        .padding(horizontal = MaterialTheme.dimen.normal),
                     text = userDetails.location,
+                    style = MaterialTheme.typography.labelMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -107,16 +112,22 @@ internal fun UserDetailsComponent(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    .padding(
+                        start = MaterialTheme.dimen.normal,
+                        end = MaterialTheme.dimen.normal,
+                        bottom = MaterialTheme.dimen.normal
+                    ),
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimen.normal)
             ) {
                 Text(
                     text = stringResource(R.string.followers_at, userDetails.followers),
+                    style = MaterialTheme.typography.labelMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
                     text = stringResource(R.string.following_at, userDetails.following),
+                    style = MaterialTheme.typography.labelMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )

@@ -23,21 +23,19 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.thomas.domain.model.UserModel
+import com.thomas.presentation.ui.theme.dimen
 
 @Composable
 internal fun UserItemComponent(user: UserModel, onItemClick: () -> Unit) {
-    val shapeCard = RoundedCornerShape(6.dp)
+    val shapeCard = RoundedCornerShape(MaterialTheme.dimen.small)
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .shadow(
-                elevation = 2.dp,
+                elevation = MaterialTheme.dimen.elevationSmall,
                 shape = shapeCard,
                 spotColor = MaterialTheme.colorScheme.secondary
             )
@@ -54,14 +52,14 @@ internal fun UserItemComponent(user: UserModel, onItemClick: () -> Unit) {
         shape = shapeCard,
     ) {
         Row(
-            modifier = Modifier.padding(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.padding(MaterialTheme.dimen.normal),
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimen.normal),
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (user.avatarUrl.isNotBlank()) {
                 SubcomposeAsyncImage(
                     modifier = Modifier
-                        .size(40.dp)
+                        .size(MaterialTheme.dimen.iconLarge)
                         .clip(CircleShape),
                     model = ImageRequest
                         .Builder(LocalContext.current)
@@ -70,11 +68,11 @@ internal fun UserItemComponent(user: UserModel, onItemClick: () -> Unit) {
                     contentScale = ContentScale.FillBounds,
                     contentDescription = null,
                     loading = {
-                        CircularProgressIndicator(Modifier.size(20.dp))
+                        CircularProgressIndicator(Modifier.size(MaterialTheme.dimen.iconSmall))
                     }
                 )
             }
-            Text(text = user.nickname, fontWeight = FontWeight.Medium, fontSize = 18.sp)
+            Text(text = user.nickname, style = MaterialTheme.typography.titleSmall)
         }
     }
 }

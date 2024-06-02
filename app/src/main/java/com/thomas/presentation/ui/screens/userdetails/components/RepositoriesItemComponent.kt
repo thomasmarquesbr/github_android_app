@@ -15,24 +15,24 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.thomas.myapplication.R
+import com.thomas.presentation.ui.theme.dimen
 
 @Composable
 internal fun RepositoriesItemComponent(onRepositoryClick: () -> Unit) {
-    val shapeCard = RoundedCornerShape(0.dp)
+    val shapeCard = RoundedCornerShape(MaterialTheme.dimen.default)
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 12.dp)
+            .padding(vertical = MaterialTheme.dimen.medium)
             .shadow(
-                elevation = 2.dp,
+                elevation = MaterialTheme.dimen.elevationSmall,
                 shape = shapeCard,
                 spotColor = MaterialTheme.colorScheme.secondary
             )
@@ -53,10 +53,14 @@ internal fun RepositoriesItemComponent(onRepositoryClick: () -> Unit) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+                .padding(MaterialTheme.dimen.medium),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = stringResource(R.string.repositories), fontSize = 16.sp)
+            Text(
+                text = stringResource(R.string.repositories),
+                style = MaterialTheme.typography.labelMedium
+            )
             Icon(
                 painter = painterResource(R.drawable.ic_chevron_right),
                 contentDescription = stringResource(R.string.go_repositories_content_description),
