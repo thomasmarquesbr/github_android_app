@@ -18,6 +18,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import com.thomas.domain.model.RepositoryModel
 import com.thomas.myapplication.R
 import com.thomas.presentation.ui.theme.dimen
@@ -97,4 +98,21 @@ internal fun RepositoryItemComponent(repository: RepositoryModel) {
         HorizontalDivider()
         Spacer(modifier = Modifier.size(MaterialTheme.dimen.extraSmall))
     }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF)
+@Composable
+private fun RepositoryItemComponentPreview() {
+    RepositoryItemComponent(
+        repository = RepositoryModel(
+            id = 1,
+            name = "Repository name",
+            description = "Description",
+            url = "https://url.com",
+            starsAmount = 10,
+            watchersAmount = 10,
+            language = "Language",
+            licenseName = "LicenseName"
+        )
+    )
 }

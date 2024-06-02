@@ -57,6 +57,8 @@ dependencies {
     implementation(libs.koinCompose)
     implementation(libs.systemuicontroller)
     implementation(libs.navigationAnimation)
+    implementation(libs.composeUiToolingPreview)
+    debugImplementation(libs.debug.composeUiTooling)
     testImplementation(libs.test.koinJunit)
     testImplementation(libs.test.coroutines)
     testImplementation(libs.test.mockk)

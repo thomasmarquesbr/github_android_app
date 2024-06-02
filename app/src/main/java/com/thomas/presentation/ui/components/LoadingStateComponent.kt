@@ -9,7 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.Preview
 import com.thomas.presentation.ui.theme.dimen
 
 @Composable
@@ -25,4 +25,10 @@ internal fun LoadingStateComponent() {
             trackColor = MaterialTheme.colorScheme.surfaceVariant,
         )
     }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF)
+@Composable
+private fun LoadingStateComponentPreview() {
+    LoadingStateComponent()
 }

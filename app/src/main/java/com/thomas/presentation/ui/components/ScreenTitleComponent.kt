@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.thomas.myapplication.R
 import com.thomas.presentation.ui.theme.dimen
 
@@ -48,4 +49,10 @@ internal fun ScreenTitleComponent(@StringRes text: Int, onBackClick: (() -> Unit
             color = MaterialTheme.colorScheme.primary
         )
     }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF)
+@Composable
+private fun ScreenTitleComponentPreview() {
+    ScreenTitleComponent(R.string.users_screen_title)
 }

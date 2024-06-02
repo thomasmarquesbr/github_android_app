@@ -22,6 +22,7 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.thomas.myapplication.R
 import com.thomas.presentation.ui.theme.dimen
@@ -52,7 +53,6 @@ private val AppTextInputColors: TextFieldColors
 
 @Composable
 fun SearchTextField(
-    modifier: Modifier = Modifier.fillMaxWidth(),
     text: String = "",
     onValueChanged: (String) -> Unit,
     placeHolder: String = "",
@@ -60,7 +60,8 @@ fun SearchTextField(
 ) {
     var isFocused by remember { mutableStateOf(false) }
     OutlinedTextField(
-        modifier = modifier
+        modifier = Modifier
+            .fillMaxWidth()
             .focusRequester(FocusRequester())
             .onFocusChanged {
                 isFocused = it.isFocused
@@ -84,5 +85,15 @@ fun SearchTextField(
         keyboardActions = KeyboardActions(
             onGo = { onGoFocus.invoke() }
         ),
+    )
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF)
+@Composable
+private fun SearchTextFieldPreview() {
+    SearchTextField(
+        onValueChanged = {},
+        text = "",
+        placeHolder = "Campo de busca"
     )
 }

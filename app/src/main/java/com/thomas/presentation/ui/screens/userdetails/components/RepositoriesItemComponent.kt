@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.thomas.myapplication.R
 import com.thomas.presentation.ui.theme.dimen
 
@@ -68,4 +69,10 @@ internal fun RepositoriesItemComponent(onRepositoryClick: () -> Unit) {
             )
         }
     }
+}
+
+@Preview
+@Composable
+private fun RepositoriesItemComponentPreview() {
+    RepositoriesItemComponent(onRepositoryClick = {})
 }
