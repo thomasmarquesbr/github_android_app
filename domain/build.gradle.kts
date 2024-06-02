@@ -9,16 +9,10 @@ java {
 }
 
 dependencies {
-    testImplementation("org.testng:testng:6.9.6")
-    val koinVersion = "3.2.2"
-    // Koin
-    implementation("io.insert-koin:koin-core:$koinVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    // Mockk
-    testImplementation("io.mockk:mockk:1.13.11")
-
-    testImplementation("org.assertj:assertj-core:3.20.2")
-    testImplementation("androidx.test:core:1.4.0")
-    testImplementation("app.cash.turbine:turbine:0.5.2")
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    implementation(libs.koin)
+    implementation(libs.coroutines)
+    testImplementation(libs.test.mockk)
+    testImplementation(libs.test.core)
+    testImplementation(libs.test.turbine)
+    testImplementation(libs.test.archCore)
 }

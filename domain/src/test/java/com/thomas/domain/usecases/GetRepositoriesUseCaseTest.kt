@@ -6,10 +6,10 @@ import com.thomas.domain.RepositoryStubs
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import junit.framework.Assert
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import kotlin.time.ExperimentalTime
 
@@ -30,7 +30,7 @@ internal class GetRepositoriesUseCaseTest {
         // Then
         coVerify { repository.getRepositories(username) }
         result.test {
-            Assert.assertEquals(expectItem(), expectItem)
+            assertEquals(expectItem(), expectItem)
             expectComplete()
         }
     }
@@ -48,7 +48,7 @@ internal class GetRepositoriesUseCaseTest {
         // Then
         coVerify { repository.getRepositories(username) }
         result.test {
-            Assert.assertEquals(expectError(), error)
+            assertEquals(expectError(), error)
         }
     }
 }

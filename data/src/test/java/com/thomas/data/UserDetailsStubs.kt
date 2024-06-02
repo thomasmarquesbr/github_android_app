@@ -24,6 +24,7 @@ internal object UserDetailsStubs {
         company = "Linux Foundation",
         location = "Portland, OR",
         followers = 208485,
-        following = 0
+        following = 0,
+        reposUrl = "https://api.github.com/users/torvalds/repos"
     )
 }
