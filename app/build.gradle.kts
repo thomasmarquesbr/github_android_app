@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.koinCompose)
     implementation(libs.systemuicontroller)
+    implementation(libs.navigationAnimation)
     testImplementation(libs.test.koinJunit)
     testImplementation(libs.test.coroutines)
     testImplementation(libs.test.mockk)
